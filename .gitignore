@@ -1,0 +1,32 @@
+#Ignore thumbnails created by windows
+Thumbs.db
+
+#Ignore files build by Visual Studio
+*.ilk
+*.exp
+*.pdb
+*.iobj
+*.ipdb
+*.sdf
+*.opensdf
+*.user
+*.aps
+*.pch
+*.vspscc
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.sbr
+*.ipch
+
+#Ignore folder
+/obj/
+/mat/
+/lib/
+/*/.vs/
+/*/ipch/
+
+#Ignore project exe
+/bin/*_Debug.exe
+/bin/*_Release.exe
