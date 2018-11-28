@@ -103,9 +103,6 @@
 // Macros
 //=============================================================================
 
-#define _STRINGIZE( _n )   _STRINGIZE_2( _n )
-#define _STRINGIZE_2( _n ) #_n
-
 #if COMPILER_MSVC
 #	define TODO(_msg) __pragma(message(__FILE__ "(" _STRINGIZE(__LINE__) ") : TODO: " _msg))
 #else

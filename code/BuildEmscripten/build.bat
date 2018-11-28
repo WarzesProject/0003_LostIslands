@@ -1,0 +1,1 @@
+em++ ../code/main.cpp ../code/Terminal.cpp ../code/Window.cpp -std=c++11 -O2 -s USE_SDL=2 -s LEGACY_GL_EMULATION=1 -o ../../bin/index.html

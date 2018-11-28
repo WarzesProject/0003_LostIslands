@@ -4,10 +4,33 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{42e2f4b5-a34b-45c0-9305-ee530d06bf92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Core">
+      <UniqueIdentifier>{49e7e1d5-e3e5-4831-88e9-105c8600b9d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\App">
+      <UniqueIdentifier>{92251217-7355-4875-abf5-163cfaa16120}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h">
-      <Filter>Engine</Filter>
+      <Filter>Engine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Engine\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Terminal.h">
+      <Filter>Engine\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Engine\App</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Terminal.cpp">
+      <Filter>Engine\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Engine\App</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
