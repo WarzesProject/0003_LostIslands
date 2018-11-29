@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Event.h"
+
 class Window
 {
 public:

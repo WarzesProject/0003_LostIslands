@@ -10,6 +10,27 @@
     <Filter Include="Engine\App">
       <UniqueIdentifier>{92251217-7355-4875-abf5-163cfaa16120}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Math">
+      <UniqueIdentifier>{561a8969-0e47-479b-8335-ab9074862c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Utils">
+      <UniqueIdentifier>{42d67f44-ae33-4c6d-a3da-6e8645acda92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{e567f050-d003-4835-bdeb-4a13792ccacb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Render">
+      <UniqueIdentifier>{5b3ce8f4-3c97-4619-9732-b64aa8b8340d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Debug">
+      <UniqueIdentifier>{973e6cba-53a5-4c83-9898-3e6370f4dc22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{958457fc-773c-4cdc-a38a-dc9b15649a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\FreeType">
+      <UniqueIdentifier>{e1c49d87-f3fe-4f85-9404-c055f4fc761e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base.h">
@@ -24,6 +45,91 @@
     <ClInclude Include="Event.h">
       <Filter>Engine\App</Filter>
     </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Size.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Base64.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Engine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Bitmap.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="BOM.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Encoding.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionGroup.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Engine\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Palette.h">
+      <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Options.h">
+      <Filter>Engine\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Atlas.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Tileset.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapTileset.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadBitmap.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicTileset.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="TrueTypeTileset.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>Engine\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Engine\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Terminal.cpp">
@@ -31,6 +137,137 @@
     </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Engine\App</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Base64.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Engine\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Bitmap.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="BOM.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Encoding.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionGroup.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Engine\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Palette.cpp">
+      <Filter>Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Options.cpp">
+      <Filter>Engine\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Atlas.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Tileset.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapTileset.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadBitmap.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicTileset.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\autofit\autofit.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftbase.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftbbox.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftdebug.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftfstype.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftgasp.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftglyph.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftinit.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftlcdfil.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftmm.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftsystem.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\raster\raster.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\sfnt\sfnt.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\smooth\smooth.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\truetype\truetype.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="TrueTypeTileset.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\FreeType\Source\base\ftbitmap.c">
+      <Filter>3rdparty\FreeType</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadBMP.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadJPEG.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadPNG.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\PicoPNG.cpp">
+      <Filter>3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveBMP.cpp">
+      <Filter>Engine\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Engine\App</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

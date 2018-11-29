@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "code", "code\code.vcxproj", "{2F720B99-9B11-4089-A3D1-678482FBAC52}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "other", "other", "{50BD1967-C1D6-494A-BB84-BE2ACAA946FE}"
+	ProjectSection(SolutionItems) = preProject
+		BuildEmscripten\BuildEmscripten.cpp = BuildEmscripten\BuildEmscripten.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86

@@ -2,12 +2,16 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include "Terminal.h"
+#include "OpenGL.h"
+
+extern bool UserInit(Terminal *terminal);
+extern void UserFrame(Terminal *terminal);
+extern void UserClose(Terminal *terminal);
 //-----------------------------------------------------------------------------
 #if PLATFORM_EMSCRIPTEN
 void loopHandler()
 {
 	g_instance->frame();
-
 	if (g_instance->m_wnd.IsClose())
 		emscripten_cancel_main_loop();
 }
@@ -27,7 +31,7 @@ Terminal::~Terminal()
 //-----------------------------------------------------------------------------
 void Terminal::Run()
 {
-	if (init())
+	if (init() && UserInit(this))
 	{
 #if PLATFORM_EMSCRIPTEN
 		emscripten_set_main_loop(loopHandler, -1, 1);
@@ -40,6 +44,7 @@ void Terminal::Run()
 		}
 #endif
 	}
+	UserClose(this);
 	close();
 }
 //-----------------------------------------------------------------------------
@@ -48,19 +53,14 @@ bool Terminal::init()
 	if (!m_wnd.Init(std::bind(&Terminal::onWindowEvent, this, std::placeholders::_1)))
 		return false;
 
+	ProbeOpenGL();
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 void Terminal::frame()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_QUADS);
-	glVertex2f(-0.5f, -0.5f);
-	glVertex2f(0.5f, -0.5f);
-	glVertex2f(0.5f, 0.5f);
-	glVertex2f(-0.5f, 0.5f);
-	glEnd();
-
+	UserFrame(this);
 	m_wnd.Swap();
 	m_wnd.Input();
 }

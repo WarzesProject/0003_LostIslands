@@ -2,10 +2,14 @@
 // PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 #include "stdafx.h"
 #include "Window.h"
+#include "Size.h"
+
 //-----------------------------------------------------------------------------
 bool Window::Init(EventHandler handler)
 {
 	m_eventHandler = handler;
+
+	const Size size(640, 480);
 
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
@@ -17,7 +21,7 @@ bool Window::Init(EventHandler handler)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, size.width, size.height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 	if (!m_window)
 	{
 		printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
