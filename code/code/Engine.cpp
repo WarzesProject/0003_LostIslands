@@ -87,3 +87,9 @@ void terminal_print_ext32(int x, int y, int w, int h, int align, const int32_t* 
 {
 	TERMINAL_PRINT_OR_MEASURE(x, y, align, UCS4Encoding().Convert((const char32_t*)s), false)
 }
+
+void terminal_put(int x, int y, int code)
+{
+	if (!g_instance) return;
+	g_instance->Put(x, y, code);
+}

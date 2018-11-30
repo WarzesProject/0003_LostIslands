@@ -30,6 +30,10 @@ bool UserInit(Terminal *terminal)
 void UserFrame(Terminal *terminal)
 {
 	terminal_clear();
+	
+	terminal_put(0, 0, 0xE000); // Background
+
+
 	terminal_print(0, 3, L"[color=orange]3.[/color] Unicode support: Кириллица");
 }
 void UserClose(Terminal *terminal)
