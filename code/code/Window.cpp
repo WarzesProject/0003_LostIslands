@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Size.h"
 #include "Utility.h"
+#include "Log.h"
 
 //-----------------------------------------------------------------------------
 static int MapWindowsScancodeToTerminal(uint8_t scancode)
@@ -304,6 +305,14 @@ void Window::SetClientSize(const Size& size)
 {
 	SDL_SetWindowSize(m_window, size.width, size.height);
 	m_client_size = size;
+}
+//-----------------------------------------------------------------------------
+void Window::SetVSync(bool enabled)
+{
+	if (SDL_GL_SetSwapInterval(enabled ? 1 : 0) < 0)
+	{
+		LOG(Warning, "Warning: Unable to set VSync! SDL Error: " << SDL_GetError());
+	}
 }
 //-----------------------------------------------------------------------------
 void Window::SetSizeHints(Size increment, Size minimum_size)

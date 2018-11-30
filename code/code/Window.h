@@ -25,7 +25,7 @@ public:
 	void SetTitle(const std::wstring &title);
 	void SetSizeHints(Size increment, Size minimum_size);
 	void SetClientSize(const Size& size);
-	void SetVSync(bool enabled) {}
+	void SetVSync(bool enabled);
 	void SetResizeable(bool resizeable) {}
 	void SetFullscreen(bool fullscreen) {}
 	void SetCursorVisibility(bool visible) {}

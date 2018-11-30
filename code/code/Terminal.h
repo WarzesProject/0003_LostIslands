@@ -31,6 +31,12 @@ static const int kScaleDefault = 1;
 #define TK_EVENT            0xCA /* Last dequeued event */
 #define TK_FULLSCREEN       0xCB /* Fullscreen state */
 
+/*
+* Input result codes for terminal_read function.
+*/
+#define TK_INPUT_NONE          0
+#define TK_INPUT_CANCELLED    -1
+
 class Terminal
 {
 public:
@@ -54,6 +60,7 @@ public:
 	Color PickForeColor(int x, int y, int index);
 	Color PickBackColor(int x, int y);
 	Size Print(int x, int y, int w, int h, int align, std::wstring str, bool raw, bool measure_only);
+
 	const Encoding8& GetEncoding() const;
 
 private:

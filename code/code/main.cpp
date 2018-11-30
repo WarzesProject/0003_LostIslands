@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Engine.h"
 #include "Terminal.h"
+#include "Log.h"
 
 //-----------------------------------------------------------------------------
 #if COMPILER_MSVC
