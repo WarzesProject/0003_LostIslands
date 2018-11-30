@@ -16,7 +16,7 @@ void Log::Write(Level level, const std::wstring &what)
 	ss << " [" << level << "] " << what << std::endl;
 	std::wcout << ss.str() << std::endl;
 #if _WIN32
-	OutputDebugString((ss.str() + L"\n").c_str());
+	OutputDebugString((ss.str()).c_str());
 #endif
 }
 //-----------------------------------------------------------------------------

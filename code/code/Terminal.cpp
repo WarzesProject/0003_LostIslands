@@ -3,6 +3,11 @@
 #include "stdafx.h"
 #include "Terminal.h"
 #include "OpenGL.h"
+#include "Log.h"
+#include "Utility.h"
+#include "Config.h"
+#include "Palette.h"
+#include "Geometry.h"
 
 extern bool UserInit(Terminal *terminal);
 extern void UserFrame(Terminal *terminal);
@@ -22,6 +27,11 @@ Terminal *g_instance = nullptr;
 Terminal::Terminal()
 {
 	g_instance = this;
+	for (auto &var : m_vars)
+		var = 0;
+
+	// Save main thread ID so we can catch threading violations.
+	m_main_thread_id = std::this_thread::get_id();
 }
 //-----------------------------------------------------------------------------
 Terminal::~Terminal()
@@ -31,7 +41,7 @@ Terminal::~Terminal()
 //-----------------------------------------------------------------------------
 void Terminal::Run()
 {
-	if (init() && UserInit(this))
+	if (init())
 	{
 #if PLATFORM_EMSCRIPTEN
 		emscripten_set_main_loop(loopHandler, -1, 1);
@@ -44,7 +54,7 @@ void Terminal::Run()
 		}
 #endif
 	}
-	UserClose(this);
+	
 	close();
 }
 //-----------------------------------------------------------------------------
@@ -55,18 +65,32 @@ bool Terminal::init()
 
 	ProbeOpenGL();
 
+	SetOptionsInternal(L"window: size=80x25, icon=default; font: default; terminal.encoding=utf8; input.filter={keyboard}");
+
+	LOG(Info, "Terminal initialization complete");
+	LOG(Info, "--------------------------------");
+
+	if (!UserInit(this))
+		return false;
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 void Terminal::frame()
 {
 	UserFrame(this);
-	m_wnd.Swap();
+	Refresh();
+	
+	
 	m_wnd.Input();
 }
 //-----------------------------------------------------------------------------
 void Terminal::close()
 {
+	UserClose(this);
+	g_codespace.clear();
+	g_tilesets.clear();
+	g_atlas.Clear();
 	m_wnd.Close();
 }
 //-----------------------------------------------------------------------------

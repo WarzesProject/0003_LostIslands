@@ -77,3 +77,11 @@ struct BasicSize
 
 typedef BasicSize<int> Size;
 typedef BasicSize<float> SizeF;
+
+namespace std
+{
+	template<typename T> BasicSize<T> floor(BasicSize<T> value)
+	{
+		return BasicSize<T>(std::floor(value.width), std::floor(value.height));
+	}
+}

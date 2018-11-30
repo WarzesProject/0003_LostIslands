@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Window.h"
 #include "Size.h"
+#include "Utility.h"
 
 //-----------------------------------------------------------------------------
 bool Window::Init(EventHandler handler)
@@ -107,7 +108,31 @@ bool Window::initGL()
 		printf( "Error initializing OpenGL! %d\n", error );
 		return false;
 	}
-
+	
 	return true;
 }
 //-----------------------------------------------------------------------------
+void Window::SetTitle(const std::wstring &title)
+{
+	SDL_SetWindowTitle(m_window, WSTRtoUTF8(title).c_str());
+}
+//-----------------------------------------------------------------------------
+void Window::SetClientSize(const Size& size)
+{
+	SDL_SetWindowSize(m_window, size.width, size.height);
+	m_client_size = size;
+}
+//-----------------------------------------------------------------------------
+void Window::SetSizeHints(Size increment, Size minimum_size)
+{
+	m_cell_size = increment;
+	m_minimum_size = minimum_size;
+
+	if (m_minimum_size.width < 1) m_minimum_size.width = 1;
+	if (m_minimum_size.height < 1) m_minimum_size.height = 1;
+}
+//-----------------------------------------------------------------------------
+Size Window::GetActualSize()
+{
+	return m_client_size;
+}

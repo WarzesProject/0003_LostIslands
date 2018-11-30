@@ -1,5 +1,11 @@
 ﻿#pragma once
 
+inline std::string WSTRtoUTF8(const std::wstring &wstr)
+{
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> cv;
+	return cv.to_bytes(wstr);
+}
+
 template<typename T, typename char_t> bool try_parse(const std::basic_string<char_t>& s, T& out)
 {
 	std::basic_stringstream<char_t> stream(s);

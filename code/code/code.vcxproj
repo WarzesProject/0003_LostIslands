@@ -237,6 +237,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Terminal.cpp" />
+    <ClCompile Include="TerminalOther.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="TrueTypeTileset.cpp" />

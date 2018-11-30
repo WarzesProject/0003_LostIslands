@@ -16,6 +16,8 @@
 #include <cstdint>
 #include <cctype>
 
+#include <locale>         // std::wstring_convert
+#include <codecvt>        // std::codecvt_utf8
 #include <memory>
 #include <functional>
 #include <chrono>
@@ -28,10 +30,12 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <array>
 #include <set>
 #include <vector>
 #include <map>
 #include <unordered_map>
+
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>

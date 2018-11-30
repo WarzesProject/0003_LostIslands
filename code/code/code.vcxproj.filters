@@ -269,5 +269,8 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="TerminalOther.cpp">
+      <Filter>Engine\App</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

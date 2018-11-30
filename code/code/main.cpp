@@ -13,17 +13,21 @@
 
 bool UserInit(Terminal *terminal)
 {
+	terminal_set(
+		"window: size=80x25, cellsize=auto, title='Omni: menu';"
+		"font: default;"
+		"input: filter={keyboard}"
+		);
+	terminal_color("green");
+	terminal_set("output.vsync=false");
+
+
 	return true;
 }
 void UserFrame(Terminal *terminal)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBegin(GL_QUADS);
-	glVertex2f(-0.5f, -0.5f);
-	glVertex2f(0.5f, -0.5f);
-	glVertex2f(0.5f, 0.5f);
-	glVertex2f(-0.5f, 0.5f);
-	glEnd();
+	terminal_clear();
+	terminal_print(0, 3, L"[color=orange]3.[/color] Unicode support: Кириллица");
 }
 void UserClose(Terminal *terminal)
 {
@@ -33,8 +37,8 @@ void UserClose(Terminal *terminal)
 //-----------------------------------------------------------------------------
 int main(int, char*[])
 {
-	terminal_open();
-	terminal_close();
+	Terminal terminal;
+	terminal.Run();
 	return 0;
 }
 //-----------------------------------------------------------------------------
