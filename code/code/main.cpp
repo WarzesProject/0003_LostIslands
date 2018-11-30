@@ -22,8 +22,10 @@ bool UserInit(Terminal *terminal)
 	terminal_color("green");
 	terminal_set("output.vsync=false");
 
+	terminal_color("white");
 	terminal_set("U+E000: Media/Background.jpg");
-
+	terminal_set("U+E001: Media/EasternDragon.png, resize=128x128, resize-filter=nearest");
+	terminal_set("U+E002: Media/FiveElements.bmp, resize=128x128, resize-filter=bilinear");
 
 	return true;
 }
@@ -32,6 +34,8 @@ void UserFrame(Terminal *terminal)
 	terminal_clear();
 	
 	terminal_put(0, 0, 0xE000); // Background
+	terminal_put(5, 14, 0xE001); // Dragon
+	terminal_put(5 + 18 * 1, 14, 0xE002); // FiveElements
 
 
 	terminal_print(0, 3, L"[color=orange]3.[/color] Unicode support: Кириллица");
