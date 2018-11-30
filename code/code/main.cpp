@@ -15,12 +15,14 @@
 bool UserInit(Terminal *terminal)
 {
 	terminal_set(
-		"window: size=80x25, cellsize=auto, title='Omni: menu';"
+		"window: size=80x25, cellsize=auto, title='Lost Island';"
 		"font: default;"
 		"input: filter={keyboard}"
 		);
 	terminal_color("green");
 	terminal_set("output.vsync=false");
+
+	terminal_set("U+E000: Media/Background.jpg");
 
 
 	return true;
