@@ -40,15 +40,21 @@ public:
 	void Run();
 
 	int SetOptions(const std::wstring& value);
-
-	const Encoding8& GetEncoding() const;
-
+	void Clear();
+	void Clear(int x, int y, int w, int h);
+	void SetCrop(int x, int y, int w, int h);
+	void SetLayer(int layer_index);
 	void SetForeColor(Color color);
 	void SetBackColor(Color color);
-
-	void Clear();
-
+	void SetComposition(int mode);
+	void SetFont(std::wstring name);
+	void Put(int x, int y, int code);
+	void PutExtended(int x, int y, int dx, int dy, int code, Color* corners);
+	int Pick(int x, int y, int index);
+	Color PickForeColor(int x, int y, int index);
+	Color PickBackColor(int x, int y);
 	Size Print(int x, int y, int w, int h, int align, std::wstring str, bool raw, bool measure_only);
+	const Encoding8& GetEncoding() const;
 
 private:
 	bool init();

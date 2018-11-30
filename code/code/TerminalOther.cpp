@@ -840,6 +840,49 @@ void Terminal::Clear()
 	}
 }
 
+void Terminal::Clear(int x, int y, int w, int h)
+{
+	Size stage_size = m_world.stage.size;
+	if (x < 0) x = 0;
+	if (y < 0) y = 0;
+	if (x + w >= stage_size.width) w = stage_size.width - x;
+	if (y + h >= stage_size.height) h = stage_size.height - y;
+
+	Layer& layer = m_world.stage.backbuffer.layers[m_world.state.layer];
+	for (int i = x; i<x + w; i++)
+	{
+		for (int j = y; j<y + h; j++)
+		{
+			int k = stage_size.width*j + i;
+			layer.cells[k].leafs.clear();
+			if (m_world.state.layer == 0)
+			{
+				m_world.stage.backbuffer.background[k] = m_world.state.bkcolor;
+			}
+		}
+	}
+}
+
+void Terminal::SetCrop(int x, int y, int w, int h)
+{
+	m_world.stage.backbuffer.layers[m_world.state.layer].crop =
+		Rectangle(m_world.stage.size).Intersection(Rectangle(x, y, w, h));
+}
+
+void Terminal::SetLayer(int layer_index)
+{
+	// Layer index is limited to [0..255]
+	if (layer_index < 0) layer_index = 0;
+	if (layer_index > 255) layer_index = 255;
+	m_world.state.layer = layer_index;
+	m_vars[TK_LAYER] = layer_index;
+
+	while (m_world.stage.backbuffer.layers.size() <= m_world.state.layer)
+	{
+		m_world.stage.backbuffer.layers.emplace_back(m_world.stage.size);
+	}
+}
+
 struct Line
 {
 	struct Symbol
@@ -1320,9 +1363,7 @@ void Terminal::Refresh()
 	CHECK_THREAD("refresh", );
 
 	if (m_state == kHidden)
-	{
 		m_state = kVisible;
-	}
 
 	m_world.stage.frontbuffer = m_world.stage.backbuffer;
 	m_wnd.PumpEvents();
@@ -1699,4 +1740,73 @@ void Terminal::ConfigureViewport()
 
 	// ?..
 	m_wnd.SetVSync(m_options.output_vsync);
+}
+
+void Terminal::SetComposition(int mode)
+{
+	m_world.state.composition = mode;
+	m_vars[TK_COMPOSITION] = mode;
+}
+
+void Terminal::SetFont(std::wstring name)
+{
+	if (name.empty() || name == L"main")
+	{
+		m_world.state.font_offset = 0;
+	}
+	else
+	{
+		auto i = g_fonts.find(name);
+		if (i != g_fonts.end())
+		{
+			m_world.state.font_offset = i->second * Tileset::kFontOffsetMultiplier;
+		}
+	}
+}
+
+void Terminal::Put(int x, int y, int code)
+{
+	PutExtended(x, y, 0, 0, code, nullptr);
+}
+
+void Terminal::PutExtended(int x, int y, int dx, int dy, int code, Color* corners)
+{
+	if (m_options.terminal_encoding_affects_put)
+	{
+		code = m_encoding->Convert(code);
+	}
+
+	PutInternal(x, y, dx, dy, m_world.state.font_offset + code, corners);
+}
+
+int Terminal::Pick(int x, int y, int index)
+{
+	if (x < 0 || y < 0 || x >= m_world.stage.size.width || y >= m_world.stage.size.height) return 0;
+
+	int cell_index = y * m_world.stage.size.width + x;
+	auto& cell = m_world.stage.backbuffer.layers[m_world.state.layer].cells[cell_index];
+	wchar_t code = 0;
+	if (index >= 0 && index < (int)cell.leafs.size())
+		code = (int)(cell.leafs[index].code & Tileset::kCharOffsetMask);
+
+	// Must take into account possible terminal.encoding codepage.
+	int translated = m_encoding->Convert(code);
+	return translated >= 0 ? translated : (int)code;
+}
+
+Color Terminal::PickForeColor(int x, int y, int index)
+{
+	if (x < 0 || y < 0 || x >= m_world.stage.size.width || y >= m_world.stage.size.height) return Color();
+
+	int cell_index = y * m_world.stage.size.width + x;
+	auto& cell = m_world.stage.backbuffer.layers[m_world.state.layer].cells[cell_index];
+	return (index >= 0 && index < (int)cell.leafs.size()) ? cell.leafs[index].color[0] : Color();
+}
+
+Color Terminal::PickBackColor(int x, int y)
+{
+	if (x < 0 || y < 0 || x >= m_world.stage.size.width || y >= m_world.stage.size.height) return Color();
+
+	int cell_index = y * m_world.stage.size.width + x;
+	return m_world.stage.backbuffer.background[cell_index];
 }
