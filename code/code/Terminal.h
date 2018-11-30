@@ -5,6 +5,12 @@
 #include "Options.h"
 #include "OptionGroup.h"
 #include "Encoding.h"
+#include "Event.h"
+
+static const std::vector<float> kScaleSteps =
+{
+	0.75f, 1.0f, 1.25f, 1.5f, 2.0f, 3.0f
+};
 
 static const int kScaleDefault = 1;
 
@@ -80,11 +86,14 @@ private:
 	Rectangle m_stage_area;
 	SizeF m_stage_area_factor;
 
+	std::deque<Event> m_input_queue;
 	std::array<int32_t, 256> m_vars;
 	std::unique_ptr<Encoding8> m_encoding;
 
 	std::thread::id m_main_thread_id;
 	enum state_t { kHidden, kVisible, kClosed } m_state = kHidden;
+
+	bool m_alt_pressed = false; // For alt-functions interception.
 };
 
 extern Terminal *g_instance;

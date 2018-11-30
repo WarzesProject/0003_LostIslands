@@ -4,13 +4,18 @@
 #include "Size.h"
 #include "Point.h"
 
+// For internal usage
+#define TK_REDRAW        0x1001
+#define TK_INVALIDATE    0x1002
+#define TK_ACTIVATED     0x1004
+
 class Window
 {
 public:
 	typedef std::function<int(Event)> EventHandler;
 	
 	bool Init(EventHandler handler);
-	void Input();
+	
 	void Swap();
 	void Close();
 
@@ -27,9 +32,11 @@ public:
 
 	Size GetActualSize();
 
-	int PumpEvents() { return 0; }
+	int PumpEvents();
 private:
 	bool initGL();
+	void input();
+	void windowEvent(const SDL_Event &event);
 	EventHandler m_eventHandler;
 	SDL_Window *m_window = nullptr;
 	SDL_GLContext m_context = nullptr;
@@ -44,6 +51,7 @@ private:
 	bool m_resizeable = false;
 
 	bool m_maximized = false;
+	bool m_restored = false;
 	uint64_t m_last_mouse_click = 0;
 	int m_consecutive_mouse_clicks = 0;
 	bool m_suppress_wm_paint_once = false;
